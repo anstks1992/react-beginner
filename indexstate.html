@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const root = document.getElementById("root");
+    function App() {
+      const [counter, setCounter] = React.useState(0);
+      //useState 함수는 conunter같은 데이터를 숫자형 데이터로 건네주고
+      //그 데이터 값을 바꿀 함수도 함께 줌
+      //그 함수를 이용해서 데이터를 바꿧을때 데이터 값이 바뀌고 컴포넌트도 동시 리렌더링
+
+      const onClick = () => {
+        //setCounter(counter + 1);
+        //setCounter 함수를 가지고 state를 변경할때 컴포넌트(App 전체)가 재생성(리렌더링)
+        //즉 state가 바뀌면 리렌더링이 일어난다
+        setCounter((current) => current + 1);
+        //다른곳에서 counter가 중복으로 쓰이는것을 막기 위해 함수를 줘서 state값 변경
+      };
+      return (
+        <div>
+          <h3>total click : {counter}</h3>
+          <button onClick={onClick}>click</button>
+        </div>
+      );
+    }
+    ReactDOM.render(<App />, root);
+
+    /*
+      let counter = 0;
+      const counterUp = () => {
+        counter = counter + 1;
+        render();
+      };
+      const render = () => {
+        ReactDOM.render(<Container />, root);
+      };
+      const Container = () => (
+        <div>
+          <h3>total click : {counter}</h3>
+          <button onClick={counterUp}>click</button>
+        </div>
+      );
+
+      render();
+      */
+  </script>
+</html>
+
+<style lang="scss"></style>

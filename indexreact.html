@@ -1,0 +1,36 @@
+// 사용할리 없는 어려운 예제
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script>
+    const root = document.getElementById("root");
+    const h3 = React.createElement(
+      "h3",
+      //{ id: "sexy-span", style: { color: "red" } },
+      {
+        id: "sexy-span",
+        style: { color: "red" },
+        onMouseEnter: () => console.log("mouse enter"),
+      },
+      "hello"
+    );
+    // 뒤에 span은 내가 생성하고자 하는 html 태그와 똑같은 이름이어야만 함
+    // 첫번째는 태그타입, 두번째는 props, 세번째는 내용
+    // 두번째에는 이벤트 리스너 가능
+    const btn = React.createElement(
+      "button",
+      { onClick: () => console.log("im clicked") },
+      "click me"
+    );
+    const container = React.createElement("div", null, [h3, btn]);
+    //2개의 컴포넌트를 가진 컴포넌트
+    ReactDOM.render(container, root); // reactDom에게 사용자에게 보여주게(render) 해라
+    // container을 root자리에 보이게 해라
+  </script>
+</html>
+
+<style lang="scss"></style>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+  <script type="text/babel">
+    function Btn(/*props*/ { text, onClick, fontSize }) {
+      //console.log(props);
+      return (
+        <button
+          onClick={onClick}
+          style={{
+            backgroundColor: "tomato",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            //fontSize: props.big ? 16 : 16,
+            fontSize,
+          }}
+        >
+          {text}
+        </button>
+      );
+    }
+    //const MemoBtn = React.memo(btn);
+    // 부모(에서) 하나의 prop를 변경시 모든 prop가 변경이 된다
+    // 이것을 방지하기 위해 리엑트메모 사용
+
+    Btn.propTypes = {
+      text: PropTypes.string,
+      fontSize: PropTypes.number,
+    };
+    function App() {
+      const [value, setValue] = React.useState("Save Changes");
+      const changeValue = () => setValue("Revert Changes");
+      return (
+        //   <Btn banana="Save Changes" big={true} />
+        //   <Btn banana="Continue" big={false} />
+        <div>
+          <Btn text={value} onClick={changeValue} />
+          <Btn text={14} fontSize={"dddd"} />
+        </div>
+        // 여기서 onclick은 이벤트리스너가 아니라 하나의 props
+        // 여기서 설정해주는 것들은 html태그가 될수 없음
+      );
+    }
+    const root = document.getElementById("root");
+    ReactDOM.render(<App />, root);
+  </script>
+</html>
+
+<style lang="scss"></style>
